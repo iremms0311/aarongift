@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aaron Surprise 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Aaron Surprise 💕</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       user-select: none;
+      -webkit-user-select: none;
     }
 
     body {
@@ -19,416 +20,176 @@
       align-items: center;
       min-height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      padding: 10px;
     }
 
     .container {
-      position: relative;
-      width: 1000px;
-      height: 600px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      border-radius: 12px;
-      overflow: hidden;
-      background-color: #fff;
-    }
-
-    /* Screen Base Class */
-    .screen {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      display: none;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    /* ----------------------------------
-       SCREEN 1: LOCK SCREEN (1-kilit.png)
-       ---------------------------------- */
-    #screen-1 {
-      background-image: url('1-kilit.png');
-    }
-
-    /* Keypad Grid Overlay */
-    .keypad-container {
-      position: absolute;
-      right: 100px;
-      top: 250px;
-      width: 280px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-
-    .keypad-btn {
-      height: 50px;
-      background: transparent;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.1s;
-    }
-
-    .keypad-btn:active {
-      transform: scale(0.92);
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Heart Indicators Overlay */
-    .heart-indicators {
-      position: absolute;
-      right: 100px;
-      top: 185px;
-      width: 280px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .heart-dot {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      transition: background 0.2s;
-    }
-
-    .heart-dot.filled {
-      background: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 0 10px rgba(255,255,255,0.8);
-    }
-
-    /* ----------------------------------
-       SCREEN 2: BOXES (2-kutular.png)
-       ---------------------------------- */
-    #screen-2 {
-      background-image: url('2-kutular.png');
-    }
-
-    .boxes-container {
-      position: absolute;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 820px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .gift-box-btn {
-      width: 170px;
-      height: 190px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      border-radius: 15px;
-      transition: transform 0.2s ease;
-    }
-
-    .gift-box-btn:hover {
-      transform: translateY(-8px) scale(1.03);
-    }
-
-    /* ----------------------------------
-       SCREEN 3: DRAGONBALL (3-dragonball.png)
-       ---------------------------------- */
-    #screen-3 {
-      background-image: url('3-dragonball.png');
-    }
-
-    /* ----------------------------------
-       SCREEN 4: LETTER (4-mektup.png)
-       ---------------------------------- */
-    #screen-4 {
-      background-image: url('4-mektup.png');
-    }
-
-    /* ----------------------------------
-       SCREEN 5: PLAYLIST (5-playlist.png)
-       ---------------------------------- */
-    #screen-5 {
-      background-image: url('5-playlist.png');
-    }
-
-    .vinyl-btn {
-      position: absolute;
-      left: 478px;
-      top: 288px;
-      width: 295px;
-      height: 295px;
-      border-radius: 50%;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .vinyl-btn.playing {
-      animation: spin 3s linear infinite;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* ----------------------------------
-       SCREEN 6: GAME (6-oyun.png)
-       ---------------------------------- */
-    #screen-6 {
-      background-image: url('6-oyun.png');
-    }
-
-    .game-area {
-      position: absolute;
-      left: 362px;
-      top: 298px;
-      width: 388px;
-      height: 206px;
-      background: transparent;
-      overflow: hidden;
-    }
-
-    .heart-target {
-      position: absolute;
-      font-size: 30px;
-      cursor: pointer;
-      transition: left 0.15s ease-out, top 0.15s ease-out;
-      line-height: 1;
-    }
-
-    .game-hud {
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #7b2cbf;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 4px 12px;
-      border-radius: 12px;
-      border: 2px solid #e0aaff;
-    }
-
-    .game-over-msg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 26px;
-      font-weight: 800;
-      color: #ff0055;
+      max-width: 500px;
+      background: #2a2a2a;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       text-align: center;
-      text-shadow: 2px 2px 0 #fff;
-      display: none;
-      width: 90%;
+      position: relative;
     }
 
-    /* ----------------------------------
-       COMMON COMPONENTS
-       ---------------------------------- */
-    .back-btn {
-      position: absolute;
-      right: 35px;
-      bottom: 30px;
-      width: 55px;
-      height: 55px;
-      background: transparent;
+    .page {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    img.page-img {
+      max-width: 100%;
+      height: auto;
+      max-height: 350px;
+      object-fit: contain;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    h1, h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #ff7675;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #dfe6e9;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: #ff7675;
+      color: white;
       border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 25px;
       cursor: pointer;
-      border-radius: 50%;
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin-top: 10px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(255, 118, 117, 0.4);
+    }
+
+    .btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Müzik Oynatıcı Alanı */
+    .audio-container {
+      width: 100%;
+      margin: 15px 0;
+      background: #333;
+      padding: 15px;
+      border-radius: 15px;
+    }
+
+    audio {
+      width: 100%;
+      outline: none;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
+    
+    <!-- Sayfa 1: Kilit / Giriş -->
+    <div class="page active" id="page1">
+      <img src="1-kilit.png" alt="Lock" class="page-img">
+      <h1>Sürprize Hoş Geldin! ❤️</h1>
+      <p>Senin için hazırladığım bu özel sürpriz dünyasını açmak için tıkla!</p>
+      <button class="btn" onclick="nextPage(2)">Başla ✨</button>
+    </div>
 
-    <!-- 1. KİLİT EKRANI -->
-    <div id="screen-1" class="screen active">
-      <div class="heart-indicators">
-        <div class="heart-dot" id="dot-0"></div>
-        <div class="heart-dot" id="dot-1"></div>
-        <div class="heart-dot" id="dot-2"></div>
-        <div class="heart-dot" id="dot-3"></div>
+    <!-- Sayfa 2: Kutular -->
+    <div class="page" id="page2">
+      <img src="2-kutular.png" alt="Boxes" class="page-img">
+      <h2>Sürpriz Kutuları 🎁</h2>
+      <p>Seninle geçirdiğim her an bir hediye gibi...</p>
+      <button class="btn" onclick="nextPage(3)">Devam Et ➔</button>
+    </div>
+
+    <!-- Sayfa 3: Dragon Ball -->
+    <div class="page" id="page3">
+      <img src="3-dragonball.png" alt="Dragon Ball" class="page-img">
+      <h2>Güçlü Bir Bağ 💥</h2>
+      <p>Tıpkı en sevdiğin karakterler gibi yenilmez bir ekibiz!</p>
+      <button class="btn" onclick="nextPage(4)">Devam Et ➔</button>
+    </div>
+
+    <!-- Sayfa 4: Mektup -->
+    <div class="page" id="page4">
+      <img src="4-mektup.png" alt="Letter" class="page-img">
+      <h2>Sana Bir Not 💌</h2>
+      <p>Hayatımda olduğun için çok şanslıyım. İyi ki varsın!</p>
+      <button class="btn" onclick="nextPage(5)">Müzik Sayfasına Git 🎵</button>
+    </div>
+
+    <!-- Sayfa 5: Müzik / Playlist -->
+    <div class="page" id="page5">
+      <img src="5-playlist.png" alt="Playlist" class="page-img">
+      <h2>Bizim Şarkımız 🎶</h2>
+      <p>Bu şarkı bana her zaman seni hatırlatıyor...</p>
+      
+      <div class="audio-container">
+        <audio controls id="bgMusic" src="lovesong.mp3" preload="auto"></audio>
       </div>
 
-      <div class="keypad-container">
-        <button class="keypad-btn" onclick="pressKey('1')"></button>
-        <button class="keypad-btn" onclick="pressKey('2')"></button>
-        <button class="keypad-btn" onclick="pressKey('3')"></button>
-        <button class="keypad-btn" onclick="pressKey('4')"></button>
-        <button class="keypad-btn" onclick="pressKey('5')"></button>
-        <button class="keypad-btn" onclick="pressKey('6')"></button>
-        <button class="keypad-btn" onclick="pressKey('7')"></button>
-        <button class="keypad-btn" onclick="pressKey('8')"></button>
-        <button class="keypad-btn" onclick="pressKey('9')"></button>
-        <button class="keypad-btn" onclick="clearKey()"></button>
-        <button class="keypad-btn" onclick="pressKey('0')"></button>
-        <button class="keypad-btn" onclick="checkCode()"></button>
-      </div>
+      <button class="btn" onclick="nextPage(6)">Oyun Sayfasına Git 🎮</button>
     </div>
 
-    <!-- 2. KUTULAR EKRANI -->
-    <div id="screen-2" class="screen">
-      <div class="boxes-container">
-        <button class="gift-box-btn" onclick="showScreen('screen-3')"></button>
-        <button class="gift-box-btn" onclick="showScreen('screen-4')"></button>
-        <button class="gift-box-btn" onclick="showScreen('screen-5')"></button>
-        <button class="gift-box-btn" onclick="showScreen('screen-6'); startGame();"></button>
-      </div>
-    </div>
-
-    <!-- 3. DRAGONBALL EKRANI -->
-    <div id="screen-3" class="screen">
-      <button class="back-btn" onclick="showScreen('screen-2')"></button>
-    </div>
-
-    <!-- 4. MEKTUP EKRANI -->
-    <div id="screen-4" class="screen">
-      <button class="back-btn" onclick="showScreen('screen-2')"></button>
-    </div>
-
-    <!-- 5. PLAYLIST EKRANI -->
-    <div id="screen-5" class="screen">
-      <button class="vinyl-btn" id="vinyl" onclick="toggleMusic()"></button>
-      <button class="back-btn" onclick="showScreen('screen-2'); pauseMusic();"></button>
-    </div>
-
-    <!-- 6. OYUN EKRANI -->
-    <div id="screen-6" class="screen">
-      <div class="game-area" id="game-area">
-        <div class="game-hud" id="hud">Caught: 0/5</div>
-        <div class="heart-target" id="heart-target" onclick="catchHeart()">💖</div>
-        <div class="game-over-msg" id="game-over">You won my heart! 💖</div>
-      </div>
-      <button class="back-btn" onclick="showScreen('screen-2'); resetGame();"></button>
+    <!-- Sayfa 6: Oyun / Bitiş -->
+    <div class="page" id="page6">
+      <img src="6-oyun.png" alt="Game" class="page-img">
+      <h2>Birlikte Oynayalım! 🎮</h2>
+      <p>Seninle her oyunu kazanmak harika!</p>
+      <button class="btn" onclick="nextPage(1)">En Başa Dön 🔄</button>
     </div>
 
   </div>
 
-  <!-- Muzik Dosyasi -->
-  <audio id="bg-music" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
-  </audio>
-
   <script>
-    // --- EKRAN GEÇİŞ YÖNETİMİ ---
-    function showScreen(screenId) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById(screenId).classList.add('active');
-    }
+    function nextPage(pageNumber) {
+      // Tüm sayfaları gizle
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
 
-    // --- 1. ŞİFRE SİSTEMİ ---
-    let enteredCode = "";
-    const correctCode = "0807";
-
-    function pressKey(num) {
-      if (enteredCode.length < 4) {
-        enteredCode += num;
-        updateDots();
+      // Hedef sayfayı göster
+      const targetPage = document.getElementById('page' + pageNumber);
+      if (targetPage) {
+        targetPage.classList.add('active');
       }
-    }
 
-    function clearKey() {
-      enteredCode = "";
-      updateDots();
-    }
-
-    function updateDots() {
-      for (let i = 0; i < 4; i++) {
-        const dot = document.getElementById(`dot-${i}`);
-        if (i < enteredCode.length) {
-          dot.classList.add('filled');
-        } else {
-          dot.classList.remove('filled');
+      // Müzik sayfasına geçildiğinde müziği otomatik başlat
+      if (pageNumber === 5) {
+        const audio = document.getElementById('bgMusic');
+        if (audio) {
+          audio.play().catch(e => console.log("Otomatik oynatma engellendi, kullanıcı manuel başlatabilir."));
         }
       }
-    }
-
-    function checkCode() {
-      if (enteredCode === correctCode) {
-        showScreen('screen-2');
-        clearKey();
-      } else {
-        // Hatalı girmede kilit efekti / sıfırlama
-        clearKey();
-      }
-    }
-
-    // --- 5. ŞARKI SİSTEMİ ---
-    const music = document.getElementById('bg-music');
-    const vinyl = document.getElementById('vinyl');
-
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-        vinyl.classList.add('playing');
-      } else {
-        music.pause();
-        vinyl.classList.remove('playing');
-      }
-    }
-
-    function pauseMusic() {
-      music.pause();
-      vinyl.classList.remove('playing');
-    }
-
-    // --- 6. CATCH MY HEART OYUN SİSTEMİ ---
-    let score = 0;
-    let moveInterval = null;
-    const target = document.getElementById('heart-target');
-    const hud = document.getElementById('hud');
-    const gameOverMsg = document.getElementById('game-over');
-    const gameArea = document.getElementById('game-area');
-
-    function startGame() {
-      resetGame();
-      moveHeartRandomly();
-      // Kalp 450ms'de bir hızlıca yer değiştirir
-      moveInterval = setInterval(moveHeartRandomly, 450);
-    }
-
-    function moveHeartRandomly() {
-      if (score >= 5) return;
-      
-      const maxX = gameArea.clientWidth - 40;
-      const maxY = gameArea.clientHeight - 40;
-      
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
-
-      target.style.left = randomX + 'px';
-      target.style.top = randomY + 'px';
-    }
-
-    function catchHeart() {
-      if (score < 5) {
-        score++;
-        hud.innerText = `Caught: ${score}/5`;
-        moveHeartRandomly();
-
-        if (score === 5) {
-          clearInterval(moveInterval);
-          target.style.display = 'none';
-          hud.style.display = 'none';
-          gameOverMsg.style.display = 'block';
-        }
-      }
-    }
-
-    function resetGame() {
-      score = 0;
-      clearInterval(moveInterval);
-      hud.innerText = `Caught: 0/5`;
-      hud.style.display = 'block';
-      target.style.display = 'block';
-      gameOverMsg.style.display = 'none';
     }
   </script>
+
 </body>
 </html>
